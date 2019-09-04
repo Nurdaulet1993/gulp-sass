@@ -9,6 +9,7 @@ const babel = require("gulp-babel");
 const del = require('del');
 const browserSync = require('browser-sync').create();
 const rename = require("gulp-rename");
+const imagemin = require('gulp-imagemin');
 
 const cssFiles = [
     './src/css/style2.css',
@@ -64,6 +65,15 @@ const watchFiles = () => {
     watch('./src/js/**/*.js', scripts);
     watch("./**/*.html").on('change', browserSync.reload);
 };
+
+//Таск для сжатия изображений
+task('img-compress', () => {
+    return src('./build/img/**')
+        .pipe(imagemin({
+            progressive: true
+        }))
+        .pipe(dest('./build/img/'))
+});
 
 task('styles', styles);
 task('scripts', scripts);

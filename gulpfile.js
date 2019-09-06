@@ -23,6 +23,14 @@ const jsFiles = [
 
 const styles = () => {
     return src('./src/scss/main.scss')
+        .pipe(plumber({
+            errorHandler: notify.onError(function(err){
+                return {
+                    title: 'Styles',
+                    message: err.message
+                }
+            })
+        }))
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(concat('all.css'))

@@ -10,6 +10,8 @@ const del = require('del');
 const browserSync = require('browser-sync').create();
 const rename = require("gulp-rename");
 const imagemin = require('gulp-imagemin');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
 
 const cssFiles = [
     './src/css/style2.css',

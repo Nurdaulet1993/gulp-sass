@@ -24,7 +24,7 @@ const jsFiles = [
 const styles = () => {
     return src('./src/scss/main.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(concat('all.css'))
         .pipe(autoprefixer())
         .pipe(cleanCSS({compatibility: 'ie8', level: 2}))
